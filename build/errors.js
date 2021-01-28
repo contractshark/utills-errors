@@ -7,18 +7,18 @@ exports.QueueConsistencyError = exports.ArgumentError = exports.PublicInspection
  * show the full stack trace of the originating error.
  */
 class ApplicationError extends Error {
-    constructor(message, nestedError, name = "ApplicationError") {
-        super(message);
-        this.name = name;
-        if (nestedError) {
-            // As the stack property is not standard (and browsers might differ in behavior compared to Node's implementation),
-            // we guard for its existence and keep the behavior simple.
-            if (nestedError.stack != undefined && this.stack != undefined) {
-                // Concatenate the stack traces
-                this.stack += "\nCaused by: " + nestedError.stack;
-            }
-        }
+  constructor(message, nestedError, name = "ApplicationError") {
+    super(message);
+    this.name = name;
+    if (nestedError) {
+      // As the stack property is not standard (and browsers might differ in behavior compared to Node's implementation),
+      // we guard for its existence and keep the behavior simple.
+      if (nestedError.stack != undefined && this.stack != undefined) {
+        // Concatenate the stack traces
+        this.stack += "\nCaused by: " + nestedError.stack;
+      }
     }
+  }
 }
 exports.ApplicationError = ApplicationError;
 /**
@@ -27,37 +27,37 @@ exports.ApplicationError = ApplicationError;
  * Errors of this kind represent a bug.
  */
 class UnreachableCaseError extends ApplicationError {
-    constructor(val, message) {
-        const msg = `Unreachable code: ${val}`;
-        super(message ? `${message} ${msg}` : msg, undefined, "UnreachableCaseError");
-    }
+  constructor(val, message) {
+    const msg = `Unreachable code: ${val}`;
+    super(message ? `${message} ${msg}` : msg, undefined, "UnreachableCaseError");
+  }
 }
 exports.UnreachableCaseError = UnreachableCaseError;
 /**
  * Thrown when startup configuration is incorrect.
  */
 class ConfigurationError extends ApplicationError {
-    constructor(message) {
-        super(message, undefined, "ConfigurationError");
-    }
+  constructor(message) {
+    super(message, undefined, "ConfigurationError");
+  }
 }
 exports.ConfigurationError = ConfigurationError;
 /**
  * Thrown when an event times out.
  **/
 class TimeoutError extends ApplicationError {
-    constructor(message) {
-        super(message, undefined, "TimeoutError");
-    }
+  constructor(message) {
+    super(message, undefined, "TimeoutError");
+  }
 }
 exports.TimeoutError = TimeoutError;
 /**
  * Thrown when an attempt to fetch a block fails.
  */
 class BlockFetchingError extends ApplicationError {
-    constructor(message, nestedError) {
-        super(message, nestedError, "BlockFetchingError");
-    }
+  constructor(message, nestedError) {
+    super(message, nestedError, "BlockFetchingError");
+  }
 }
 exports.BlockFetchingError = BlockFetchingError;
 /**
@@ -65,9 +65,9 @@ exports.BlockFetchingError = BlockFetchingError;
  * Error messages must be safe to expose publicly
  */
 class PublicDataValidationError extends ApplicationError {
-    constructor(message) {
-        super(message, undefined, "PublicDataValidationError");
-    }
+  constructor(message) {
+    super(message, undefined, "PublicDataValidationError");
+  }
 }
 exports.PublicDataValidationError = PublicDataValidationError;
 /**
@@ -75,28 +75,28 @@ exports.PublicDataValidationError = PublicDataValidationError;
  * Error messages must be safe to expose publicly
  */
 class PublicInspectionError extends ApplicationError {
-    constructor(message, nestedError) {
-        super(message, nestedError, "PublicInspectionError");
-    }
+  constructor(message, nestedError) {
+    super(message, nestedError, "PublicInspectionError");
+  }
 }
 exports.PublicInspectionError = PublicInspectionError;
 /**
  * Thrown when incorrect arguments are supploed to a function
  */
 class ArgumentError extends ApplicationError {
-    constructor(message, ...args) {
-        super(message, undefined, "ArgumentError");
-        this.args = args;
-    }
+  constructor(message, ...args) {
+    super(message, undefined, "ArgumentError");
+    this.args = args;
+  }
 }
 exports.ArgumentError = ArgumentError;
 /**
  * Thrown when an inconsistency in a queue is observed.
  */
 class QueueConsistencyError extends ApplicationError {
-    constructor(message) {
-        super(message, undefined, "QueueConsistencyError");
-    }
+  constructor(message) {
+    super(message, undefined, "QueueConsistencyError");
+  }
 }
 exports.QueueConsistencyError = QueueConsistencyError;
 //# sourceMappingURL=errors.js.map

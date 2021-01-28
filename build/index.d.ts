@@ -1,1 +1,11 @@
-export { ApplicationError, ArgumentError, BlockFetchingError, ConfigurationError, PublicDataValidationError, PublicInspectionError, QueueConsistencyError, TimeoutError, UnreachableCaseError } from "./errors";
+export {
+  ApplicationError,
+  ArgumentError,
+  BlockFetchingError,
+  ConfigurationError,
+  PublicDataValidationError,
+  PublicInspectionError,
+  QueueConsistencyError,
+  TimeoutError,
+  UnreachableCaseError
+} from "./errors";
